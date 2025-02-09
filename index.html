@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>HomePage</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20250209235635">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<div class="header__logo">
+					<img class="header__icon" src="img/icons/fire.webp" alt="">
+					<span>Печать ереси</span>
+				</div>
+			</div>
+		</header>
+		<main class="page">
+			<section class="home">
+				<div class="home__container">
+					<div class="home__info info-home">
+						<h1 class="info-home__title">Печать ереси WEB SDK</h1>
+						<div class="info-home__text-wrapper">
+							<div class="info-home__subtitle">Сделай селфи и узнай насколько ты еретик.</div>
+							<div class="info-home__description">Умная система биометрии проверит энергитические поля, проведет анализ ауры и
+								выдаст
+								рекомендации к очищению.</div>
+						</div>
+						<div class="info-home__action-wrapper">
+							<div class="info-home__button">
+								<button id="getCamera">Провериться</button>
+							</div>
+							<label class="info-home__label">
+								<input type="checkbox" name="" class="info-home__checkbox">
+								<span>Я согласен гореть в аду в случае высокого уровня ереси в крови</span>
+							</label>
+						</div>
+					</div>
+					<div class="home__mockap mockap" data-da=".home__info,768,2">
+						<div class="mockap__phone">
+							<img src="img/Iphone.webp" alt="mockap" class="mockap__wrapper">
+							<img src="img/preview.webp" alt="" class="mockap__inner">
+						</div>
+					</div>
+				</div>
+				<div class="home__video-container">
+					<video class="" id="getVideo"></video>
+				</div>
+			</section>
+			<section class="about">
+				<div class="about__container">
+					<div class="about__top">
+						<h1 class="about__title">Снижаем уровень ереси с XIII века.</h2>
+							<div class="about__columns">
+								<div class="about__top-column">
+									<span class="about__year">1478</span>
+									<div class="about__date-name">Год основания компании в Европе</div>
+								</div>
+								<div class="about__top-column">
+									<span class="about__year">3687</span>
+									<div class="about__date-name">Клиентов довольны нами</div>
+								</div>
+							</div>
+					</div>
+					<ul class="about__list list">
+						<li class="list__item">
+							<div class="list__icon">
+								<img src="img/icons/i1.webp" alt="">
+							</div>
+							<div class="about__info-wrapper">
+								<h3 class="list__title">Точность и темнологии</h3>
+								<p class="list__text">Наша уникальная технология анализа основана на веер и глубоких убеждениях, что
+									гарантирует
+									стабильность и достоверность результатов.</p>
+								<p class="list__text">Точность результата оценивается в 146% всеми Прововедниками нашего культа.</p>
+							</div>
+						</li>
+						<li class="list__item">
+							<div class="list__icon">
+								<img src="img/icons/i2.webp" alt="">
+							</div>
+							<div class="about__info-wrapper">
+								<h3 class="list__title">Держи свой уровень греха на нуле</h3>
+								<p class="list__text">Установи уникальное приложение "Печать ереси" на свой смартфон и будь всегда в курсе
+									своего сосотяния.</p>
+								<p class="list__text">Заходи в наш официальный интернет магазин, приобретай иконки и свечки, и снижай свой
+									статус ереси online</p>
+							</div>
+						</li>
+						<li class="list__item">
+							<div class="list__icon">
+								<img src="img/icons/i3.webp" alt="">
+							</div>
+							<div class="about__info-wrapper">
+								<h3 class="list__title">Интеграция со всеми храмами</h3>
+								<p class="list__text">Результаты проверки незамедлительно попадут в БД братства.</p>
+								<p class="list__text">Просто посетив ближайшую церковь, вам предоставят прайс лист с подходящими именно Вам
+									решениями для очищения от ереси.</p>
+							</div>
+						</li>
+						<li class="list__item">
+							<div class="list__icon">
+								<img src="img/icons/i4.webp" alt="">
+							</div>
+							<div class="about__info-wrapper">
+								<h3 class="list__title">Безопасность</h3>
+								<p class="list__text">Ваши данные в надежных руках!</p>
+								<p class="list__text">Мы гарантируем безопасную передачу ваших личных данных в любые организации по нашему
+									усмотрению.</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="order">
+				<div class="order__image">
+					<img src="img/bg-bottom.webp" alt="">
+				</div>
+				<div class="order__form-wrapper form-wrapper">
+					<div class="form-wrapper__name">Форма заявки</div>
+					<h2 class="form-wrapper__title">Заказать <span>очищение</span></h2>
+					<form action="POST" class="form-wrapper__form">
+						<label class="form-wrapper__label" for="">
+							<input data-required="name" autocomplete="off" name="name" data-error="Неправильное имя" placeholder="Ваше ФИО" class="input form-wrapper__input">
+							<i class="_icon-user"></i>
+						</label>
+						<label class="form-wrapper__label" for="">
+							<input data-required="email" autocomplete="off" name="email" data-error="Введен неверный e-mail" placeholder="E-mail" class="input form-wrapper__input">
+							<i class="_icon-email"></i>
+						</label>
+						<label class="form-wrapper__label" for="">
+							<input data-required="phone" autocomplete="off" name="phone" data-error="Некорректный телефон" placeholder="Телефон" class="input form-wrapper__input">
+							<i class="_icon-phone"></i>
+						</label>
+						<div class="form-wrapper__button">
+							<button type="submit" class="" id="sendForm">Отправить</button>
+						</div>
+					</form>
+				</div>
+			</section>
+		</main>
+	</div>
+	<script src="js/app.min.js?_v=20250209235635"></script>
+</body>
+
+</html>
