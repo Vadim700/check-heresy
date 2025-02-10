@@ -581,6 +581,8 @@
                     videoContainer.classList.add("show");
                     await video.play();
                     closeCheck.addEventListener("click", (() => {
+                        let randomCheck = Math.random() * 100;
+                        document.querySelector(".result__persent span").innerHTML = randomCheck || 73;
                         videoContainer.classList.remove("show");
                         resultPage.classList.add("show");
                         header.classList.add("hide");
