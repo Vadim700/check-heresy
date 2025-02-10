@@ -564,7 +564,6 @@
         const closeCheck = document.querySelector("#closeVideo");
         const resultPage = document.querySelector(".result");
         const videoContainer = document.querySelector(".home__video-container");
-        document.querySelector("#closeResult");
         const agreementCheckbox = document.querySelector(".info-home__checkbox");
         const resultText = document.querySelector(".result__button-text");
         const successMes = `У вас <span>Низкий</span> уровень ереси<br>\n\t\t\t\tИспортите день архиепископу и повысьте его<br>\n\t\t\t\tВ противном случае будете подлежать анаферме!`;
@@ -573,37 +572,76 @@
             agreementCheckbox.checked ? agreementCheckbox.nextElementSibling.style.color = "#000" : agreementCheckbox.nextElementSibling.style.color = "red";
         }));
         startButton.addEventListener("click", (async () => {
-            if (agreementCheckbox.checked) {
-                agreementCheckbox.nextElementSibling.style.color = "#000";
+            if (!agreementCheckbox.checked) {
+                agreementCheckbox.nextElementSibling.style.color = "red";
+                return;
+            }
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                console.error("Доступ к камере не поддерживается");
+                showErrorMessage("Доступ к камере не поддерживается в вашем браузере");
+                return;
+            }
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: "environment",
+                        width: {
+                            ideal: 1280
+                        },
+                        height: {
+                            ideal: 720
+                        }
+                    },
+                    audio: false
+                });
+                video.srcObject = stream;
                 try {
-                    const stream = await (navigator.mediaDevices?.getUserMedia({
-                        video: true,
-                        audio: false
-                    }));
-                    video.srcObject = stream;
                     await video.play();
-                    if (video) videoContainer.classList.add("show");
-                    closeCheck.addEventListener("click", (() => {
-                        let randomCheck = Math.random() * 100;
-                        console.log("randomCheck:", randomCheck);
-                        if (!isNaN(randomCheck)) document.querySelector(".result__persent span").innerHTML = randomCheck || 73;
-                        videoContainer.classList.remove("show");
-                        resultPage.classList.add("show");
-                        header.classList.add("hide");
-                        setTimeout((() => {
-                            randomCheck >= 50 ? resultText.innerHTML = noSuccessMes : resultText.innerHTML = successMes;
-                            resultText.style.display = "block";
-                        }), 3e3);
-                    }));
-                } catch (error) {
-                    console.error("Ошибка доступа к камере:", error);
-                    const errorMessage = document.createElement("div");
-                    errorMessage.classList = "info-home__error-message";
-                    errorMessage.textContent = "Ошибка доступа к камере.";
-                    if (document.querySelectorAll(".info-home__button div").length === 0) startButton.parentNode.insertBefore(errorMessage, startButton.nextSibling);
+                    if (video) {
+                        videoContainer.classList.add("show");
+                        closeCheck.addEventListener("click", (() => {
+                            stream.getTracks().forEach((track => track.stop()));
+                            let randomCheck = Math.random() * 100;
+                            document.querySelector(".result__persent span").innerHTML = randomCheck || 73;
+                            videoContainer.classList.remove("show");
+                            resultPage.classList.add("show");
+                            header.classList.add("hide");
+                            setTimeout((() => {
+                                randomCheck >= 50 ? resultText.innerHTML = noSuccessMes : resultText.innerHTML = successMes;
+                                resultText.style.display = "block";
+                            }), 3e3);
+                        }));
+                    }
+                } catch (playError) {
+                    console.error("Ошибка воспроизведения видео:", playError);
+                    showErrorMessage("Не удалось запустить камеру");
                 }
-            } else agreementCheckbox.nextElementSibling.style.color = "red";
+            } catch (error) {
+                console.error("Ошибка доступа к камере:", error);
+                switch (error.name) {
+                  case "NotAllowedError":
+                    showErrorMessage("Для работы приложения необходимо разрешить доступ к камере");
+                    break;
+
+                  case "NotFoundError":
+                    showErrorMessage("Камера не найдена");
+                    break;
+
+                  case "OverconstrainedError":
+                    showErrorMessage("Не удалось настроить камеру с выбранными параметрами");
+                    break;
+
+                  default:
+                    showErrorMessage("Произошла ошибка при попытке доступа к камере");
+                }
+            }
         }));
+        function showErrorMessage(message) {
+            const errorMessage = document.createElement("div");
+            errorMessage.classList = "info-home__error-message";
+            errorMessage.textContent = message;
+            if (!document.querySelector(".info-home__button div")) startButton.parentNode.insertBefore(errorMessage, startButton.nextSibling);
+        }
     }));
     window["FLS"] = true;
     formFieldsInit({
