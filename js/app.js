@@ -564,8 +564,11 @@
         const closeCheck = document.querySelector("#closeVideo");
         const resultPage = document.querySelector(".result");
         const videoContainer = document.querySelector(".home__video-container");
-        const closeResult = document.querySelector("#closeResult");
+        document.querySelector("#closeResult");
         const agreementCheckbox = document.querySelector(".info-home__checkbox");
+        const resultText = document.querySelector(".result__button-text");
+        const successMes = `У вас <span>Низкий</span> уровень ереси<br>\n\t\t\t\tИспортите день архиепископу и повысьте его<br>\n\t\t\t\tВ противном случае будете подлежать анаферме!`;
+        const noSuccessMes = `У вас <span>высокий</span> уровень ереси<br>\n\t\t\t\tВы должны посетить храм и отплатить прошение<br>\n\t\t\t\tВ противном случае будет наложен административный штраф до 30 тыс.руб`;
         agreementCheckbox.addEventListener("change", (() => {
             agreementCheckbox.checked ? agreementCheckbox.nextElementSibling.style.color = "#000" : agreementCheckbox.nextElementSibling.style.color = "red";
         }));
@@ -573,30 +576,31 @@
             if (agreementCheckbox.checked) {
                 agreementCheckbox.nextElementSibling.style.color = "#000";
                 try {
-                    const stream = await navigator.mediaDevices.getUserMedia({
+                    const stream = await (navigator.mediaDevices?.getUserMedia({
                         video: true,
                         audio: false
-                    });
+                    }));
                     video.srcObject = stream;
-                    videoContainer.classList.add("show");
                     await video.play();
+                    if (video) videoContainer.classList.add("show");
                     closeCheck.addEventListener("click", (() => {
                         let randomCheck = Math.random() * 100;
-                        document.querySelector(".result__persent span").innerHTML = randomCheck || 73;
+                        console.log("randomCheck:", randomCheck);
+                        if (!isNaN(randomCheck)) document.querySelector(".result__persent span").innerHTML = randomCheck || 73;
                         videoContainer.classList.remove("show");
                         resultPage.classList.add("show");
                         header.classList.add("hide");
-                    }));
-                    closeResult.addEventListener("click", (() => {
-                        resultPage.classList.remove("show");
-                        header.classList.remove("hide");
+                        setTimeout((() => {
+                            randomCheck >= 50 ? resultText.innerHTML = noSuccessMes : resultText.innerHTML = successMes;
+                            resultText.style.display = "block";
+                        }), 3e3);
                     }));
                 } catch (error) {
                     console.error("Ошибка доступа к камере:", error);
                     const errorMessage = document.createElement("div");
-                    errorMessage.style.color = "red";
+                    errorMessage.classList = "info-home__error-message";
                     errorMessage.textContent = "Ошибка доступа к камере.";
-                    startButton.parentNode.insertBefore(errorMessage, startButton.nextSibling);
+                    if (document.querySelectorAll(".info-home__button div").length === 0) startButton.parentNode.insertBefore(errorMessage, startButton.nextSibling);
                 }
             } else agreementCheckbox.nextElementSibling.style.color = "red";
         }));

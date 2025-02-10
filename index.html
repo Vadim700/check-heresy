@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20250210141134">
+	<link rel="stylesheet" href="css/style.min.css?_v=20250210154407">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +51,7 @@
 					</div>
 				</div>
 				<div class="home__video-container">
-					<video class="" muted autoplay loop id="getVideo"></video>
+					<video class="" src="img/video/video_test.mp4" muted autoplay loop id="getVideo"></video>
 					<button id="closeVideo">X</button>
 				</div>
 				<div class="home__result result">
@@ -60,13 +60,9 @@
 						<div class="result__subtitle">Ваш уровень ереси:</div>
 						<strong class="result__persent" data-watch>
 							<span data-digits-counter data-digits-counter-speed="2500"></span>%</strong>
-						<p class="result__button-text">
-							У вас высокий уровень ереси<br>
-							Вы должны посетить храм и отплатить прошение<br>
-							В противном случае будет наложен административный штраф до 30 тыс.руб
-						</p>
+						<p class="result__button-text" style="display: none;"></p>
 					</div>
-					<button id="closeResult">X</button>
+					<!-- <button id="closeResult">X</button> -->
 				</div>
 			</section>
 			<section class="about">
@@ -143,15 +139,15 @@
 					<h2 class="form-wrapper__title">Заказать <span>очищение</span></h2>
 					<form action="POST" class="form-wrapper__form">
 						<label class="form-wrapper__label" for="">
-							<input data-required="name" autocomplete="off" name="name" data-error="Неправильное имя" placeholder="Ваше ФИО" class="input form-wrapper__input">
+							<input data-required="name" autocomplete="off" name="name" data-error="Пожалуйста, введите Имя" placeholder="Ваше ФИО" class="input form-wrapper__input">
 							<i class="_icon-user"></i>
 						</label>
 						<label class="form-wrapper__label" for="">
-							<input data-required="email" autocomplete="off" name="email" data-error="Введен неверный e-mail" placeholder="E-mail" class="input form-wrapper__input">
+							<input data-required="email" autocomplete="off" name="email" data-error="Некорректный email адрес" placeholder="E-mail" class="input form-wrapper__input">
 							<i class="_icon-email"></i>
 						</label>
 						<label class="form-wrapper__label" for="">
-							<input data-required="phone" autocomplete="off" name="phone" data-error="Некорректный телефон" placeholder="Телефон" class="input form-wrapper__input">
+							<input data-required="phone" autocomplete="off" name="phone" data-error="Пожалуйста, введите номер телефона" placeholder="Телефон" class="input form-wrapper__input">
 							<i class="_icon-phone"></i>
 						</label>
 						<div class="form-wrapper__button">
@@ -162,7 +158,7 @@
 			</section>
 		</main>
 	</div>
-	<script src="js/app.min.js?_v=20250210141134"></script>
+	<script src="js/app.min.js?_v=20250210154407"></script>
 </body>
 
 </html>

@@ -171,7 +171,7 @@ h6 {
   top: 0;
   z-index: 2
 }
-.header .hide {
+.header.hide {
   z-index: 0
 }
 .header__logo {
@@ -571,7 +571,7 @@ h6 {
   height: 4px;
   bottom: -28px;
   left: -30px;
-  background-image: -ms-linear-gradient(-47deg,#ff9e17 0,#ff2b3c 100%);
+  background-image: linear-gradient(-47deg,#ff9e17 0,#ff2b3c 100%);
   -webkit-animation: lineTitle 1s forwards 1s;
   animation: lineTitle 1s forwards 1s
 }
@@ -588,7 +588,8 @@ h6 {
   color: #000
 }
 .info-home__button {
-  margin-bottom: 44px
+  margin-bottom: 44px;
+  position: relative
 }
 .info-home__button button {
   min-width: 240px;
@@ -597,7 +598,13 @@ h6 {
   background-color: #ff9600;
   color: #fff;
   font-size: 22px;
-  background-image: -ms-linear-gradient(-47deg,#ff9e17 0,#ff2b3c 100%)
+  background-image: -webkit-linear-gradient(-47deg,#ff9e17 0,#ff2b3c 100%)
+}
+.info-home__error-message {
+  position: absolute;
+  bottom: -22px;
+  left: 18px;
+  color: red
 }
 .info-home__label {
   position: relative;
@@ -865,6 +872,9 @@ h6 {
     -webkit-transform: scale(1.4);
     transform: scale(1.4);
     color: #fff
+  }
+  .info-home__button button:hover {
+    opacity: .9
   }
   .info-home__label:hover::before {
     border-color: #ff2b3c
